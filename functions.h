@@ -21,7 +21,7 @@ struct Node {
   struct BankAccount account;
   struct Node *next;
 };
-
+void clear_screen();
 void initialize_list(struct Node **head);
 void read_accounts_from_file(struct Node **head, const char *filename);
 void read_transactions_from_file(struct Node **head, const char *filename);

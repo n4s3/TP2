@@ -2,6 +2,14 @@
 #include "functions.h"
 #include <stdio.h>
 
+#define RESET "\x1B[0m"
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define BLUE "\x1B[34m"
+#define MAGENTA "\x1B[35m"
+#define CYAN "\x1B[36m"
+#define WHITE "\x1B[37m"
 int main() {
   struct Node *head;
   initialize_list(&head);
@@ -11,21 +19,40 @@ int main() {
 
   int choice;
   do {
-    printf("███████ ███████ ██       ██████   █████  ███    ██ ██   ██\n");
-    printf("██      ██      ██       ██   ██ ██   ██ ████   ██ ██  ██\n");
-    printf("█████   ███████ ██ █████ ██████  ███████ ██ ██  ██ █████\n");
-    printf("██           ██ ██       ██   ██ ██   ██ ██  ██ ██ ██  ██\n");
-    printf("███████ ███████ ██       ██████  ██   ██ ██   ████ ██   ██\n");
-    printf("Made with good hands By BELARBI ANES ABDELMALEK & NEKHOUL MOHAMMED "
-           "ASSIL");
-    printf("\n+---------------------------------------------+\n");
-    printf("|                  Main Menu                   |\n");
-    printf("+---------------------------------------------+\n");
-    printf("| 1. Admin Menu                               |\n");
-    printf("| 2. Customer Menu                            |\n");
-    printf("| 3. Exit                                     |\n");
-    printf("+---------------------------------------------+\n");
-    printf("Enter your choice: ");
+    clear_screen();
+    printf(
+        BLUE
+        "███████ ███████ ██       ██████   █████  ███    ██ ██   ██\n" RESET);
+    printf(WHITE
+           "██      ██      ██       ██   ██ ██   ██ ████   ██ ██  ██\n" RESET);
+    printf(BLUE
+           "█████   ███████ ██ █████ ██████  ███████ ██ ██  ██ █████\n" RESET);
+    printf(WHITE
+           "██           ██ ██       ██   ██ ██   ██ ██  ██ ██ ██  ██\n" RESET);
+    printf(
+        BLUE
+        "███████ ███████ ██       ██████  ██   ██ ██   ████ ██   ██\n" RESET);
+    printf(MAGENTA "BY "
+                   "BELARBI ANES ABDELMALEK " CYAN " & " RED
+                   " NEKHOUL MOHAMMED "
+                   "ASSIL\n" RESET);
+    printf(RED "+---------------------------------------------+\n" RESET);
+    printf(RED "|                  " GREEN "Main Menu" RED
+               "                    |\n" RESET);
+    printf(RED "+---------------------------------------------+\n" RESET);
+    printf(RED "|                                             |\n" RESET);
+    printf(RED "|  " WHITE "Please select an option:" RED
+               "                  |\n" RESET);
+    printf(RED "|                                             |\n" RESET);
+    printf(RED "|  " YELLOW "1. " WHITE "Admin Menu" RED
+               "                            |\n" RESET);
+    printf(RED "|  " YELLOW "2. " WHITE "Customer Menu" RED
+               "                         |\n" RESET);
+    printf(RED "|  " YELLOW "3. " WHITE "Exit" RED
+               "                                   |\n" RESET);
+    printf(RED "|                                             |\n" RESET);
+    printf(RED "+---------------------------------------------+\n" RESET);
+    printf(RED "Enter your choice: " RESET);
     scanf("%d", &choice);
 
     switch (choice) {
@@ -41,6 +68,9 @@ int main() {
     default:
       printf("Invalid choice! Please try again.\n");
     }
+    printf("Press Enter to continue...");
+    getchar(); // Clear input buffer
+    getchar(); // Wait for Enter key
   } while (choice != 3);
 
   free_list(&head);

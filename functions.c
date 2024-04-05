@@ -2,9 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define RESET "\x1B[0m"
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define BLUE "\x1B[34m"
+#define MAGENTA "\x1B[35m"
+#define CYAN "\x1B[36m"
+#define WHITE "\x1B[37m"
 
 #define ADMIN_CODE 123 // Predefined admin code
 
+void clear_screen() {
+  system("cls || clear"); // Uses 'cls' for Windows and 'clear' for Unix-like
+                          // systems
+}
 // Function to initialize the linked list
 void initialize_list(struct Node **head) { *head = NULL; }
 
@@ -271,17 +283,30 @@ void admin_menu(struct Node **head) {
     // Authentication successful
     int choice;
     do {
-      printf("+---------------------------------------------+\n");
-      printf("|                  Admin Menu                   |\n");
-      printf("+---------------------------------------------+\n");
-      printf("| 1. Add Account                              |\n");
-      printf("| 2. Delete Account                           |\n");
-      printf("| 3. Edit Account                             |\n");
-      printf("| 4. Display Accounts                         |\n");
-      printf("| 5. Transfer Amount                          |\n");
-      printf("| 6. Exit                                     |\n");
-      printf("+---------------------------------------------+\n");
-      printf("Enter your choice: ");
+      clear_screen();
+      printf(RED "+---------------------------------------------+\n" RESET);
+      printf(RED "|                  " GREEN "Admin Menu" RED
+                 "                    |\n" RESET);
+      printf(RED "+---------------------------------------------+\n" RESET);
+      printf(RED "|                                             |\n" RESET);
+      printf(RED "|  " WHITE "Please select an option:" RED
+                 "                  |\n" RESET);
+      printf(RED "|                                             |\n" RESET);
+      printf(RED "|  " YELLOW "1. " WHITE "Add Account" RED
+                 "                             |\n" RESET);
+      printf(RED "|  " YELLOW "2. " WHITE "Delete Account" RED
+                 "                          |\n" RESET);
+      printf(RED "|  " YELLOW "3. " WHITE "Edit Account" RED
+                 "                            |\n" RESET);
+      printf(RED "|  " YELLOW "4. " WHITE "Display Accounts" RED
+                 "                        |\n" RESET);
+      printf(RED "|  " YELLOW "5. " WHITE "Transfer Amount" RED
+                 "                         |\n" RESET);
+      printf(RED "|  " YELLOW "6. " WHITE "Back to Main Menu" RED
+                 "                        |\n" RESET);
+      printf(RED "|                                             |\n" RESET);
+      printf(RED "+---------------------------------------------+\n" RESET);
+      printf(RED "Enter your choice: " RESET);
       scanf("%d", &choice);
 
       switch (choice) {
@@ -345,6 +370,9 @@ void admin_menu(struct Node **head) {
       default:
         printf("Invalid choice! Please try again.\n");
       }
+      printf("Press Enter to continue...");
+      getchar(); // Clear input buffer
+      getchar(); // Wait for Enter key
     } while (choice != 6);
   } else {
     // Authentication failed
@@ -377,17 +405,28 @@ void customer_menu(struct Node *head) {
       // Authentication successful, proceed to menu
       int choice;
       do {
-        printf("+---------------------------------------------+\n");
-        printf("|                  Customer Menu                  |\n");
-        printf("+---------------------------------------------+\n");
-        printf("| 1. Deposit Fund                            |\n");
-        printf("| 2. Make Withdrawal                         |\n");
-        printf("| 3. Check Balance                           |\n");
-        printf("| 4. Check Transaction History               |\n");
-        printf("| 5. Exit                                    |\n");
-        printf("+---------------------------------------------+\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+        clear_screen();
+        printf(RED "+---------------------------------------------+\n" RESET);
+        printf(RED "|              " GREEN "Customer Menu" RED
+                   "                   |\n" RESET);
+        printf(RED "+---------------------------------------------+\n" RESET);
+        printf(RED "|                                             |\n" RESET);
+        printf(RED "|  " WHITE "Please select an option:" RED
+                   "                  |\n" RESET);
+        printf(RED "|                                             |\n" RESET);
+        printf(RED "|  " YELLOW "1. " WHITE "Deposit Fund" RED
+                   "                            |\n" RESET);
+        printf(RED "|  " YELLOW "2. " WHITE "Make Withdrawal" RED
+                   "                         |\n" RESET);
+        printf(RED "|  " YELLOW "3. " WHITE "Check Balance" RED
+                   "                            |\n" RESET);
+        printf(RED "|  " YELLOW "4. " WHITE "Check Transaction History" RED
+                   "              |\n" RESET);
+        printf(RED "|  " YELLOW "5. " WHITE "Back to Main Menu" RED
+                   "                        |\n" RESET);
+        printf(RED "|                                             |\n" RESET);
+        printf(RED "+---------------------------------------------+\n" RESET);
+        printf(RED "Enter your choice: " RESET);
 
         switch (choice) {
         case 1:
@@ -436,6 +475,9 @@ void customer_menu(struct Node *head) {
         default:
           printf("Invalid choice! Please try again.\n");
         }
+        printf("Press Enter to continue...");
+        getchar(); // Clear input buffer
+        getchar(); // Wait for Enter key
       } while (choice != 5);
 
       return; // Exit the function after successful authentication
